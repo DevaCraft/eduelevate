@@ -22,7 +22,21 @@ public class EmployeeController {
         Employee newEmployee = employeeService.addEmployee(employee);
         return ResponseEntity.ok(newEmployee);
     }
-//add api for fetch employee
+    @GetMapping("/{id}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long id) {
+        Employee employee = employeeService.getEmployeeById(id);
+        return ResponseEntity.ok(employee);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Employee> updateEmployee(@PathVariable("id") Long id, @RequestBody Employee employee) {
+        Employee updatedEmployee = employeeService.updateEmployee(id, employee);
+        return ResponseEntity.ok(updatedEmployee);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id) {
+        employeeService.deleteEmployee(id);
+        return ResponseEntity.ok().build();
+    }
 
 
 
